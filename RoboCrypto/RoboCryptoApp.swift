@@ -11,7 +11,9 @@ import SwiftUI
 struct RoboCryptoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                HomeView()
+            }
         }
     }
 }

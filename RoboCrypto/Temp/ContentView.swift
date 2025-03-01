@@ -21,10 +21,10 @@ struct ContentView: View {
                     .foregroundColor(Color.theme.secondaryText)
                 
                 Text("Green Color")
-                    .foregroundColor(Color.theme.green)
+                    .foregroundColor(Color.theme.greenColor)
                 
                 Text("Red Color")
-                    .foregroundColor(Color.theme.red)
+                    .foregroundColor(Color.theme.redColor)
             }
         }
     }
