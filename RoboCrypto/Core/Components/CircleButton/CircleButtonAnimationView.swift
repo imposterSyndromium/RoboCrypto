@@ -20,8 +20,6 @@ struct CircleButtonAnimationView: View {
                 .easeOut(duration: 0.4),
                 value: animationAmount
             )
-        
-        
             .onAppear {
                 animationAmount = 2
             }
