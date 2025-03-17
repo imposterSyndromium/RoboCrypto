@@ -33,6 +33,7 @@ struct CircleButtonView: View {
             .padding()
             .colorScheme(.dark)
             .background(Color.theme.accent)
+            .colorScheme(.dark)
     }
        
 }

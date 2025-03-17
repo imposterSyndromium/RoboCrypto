@@ -8,29 +8,31 @@
 import SwiftUI
 
 struct CircleButtonAnimationView: View {
-    
-    @Binding var animate: Bool
+
+     @State private var animationAmount: CGFloat = 1
     
     var body: some View {
         Circle()
-            .stroke(lineWidth: 5.0)
-            .scale(animate ? 1.0 : 0.0)
-            .opacity(animate ? 0.0 : 1.0)
+            .stroke(Color.accentColor, lineWidth: 5)
+            .scaleEffect(animationAmount * 0.7)
+            .opacity(2 - animationAmount)
+            .animation(
+                .easeOut(duration: 0.4),
+                value: animationAmount
+            )
+        
+        
             .onAppear {
-                if animate {
-                    withAnimation(Animation.easeOut(duration: 3.0)) {
-                        animate.toggle()
-                    }
-                }
-                
+                animationAmount = 2
             }
     }
+    
 }
 
 struct CircleButtonAnimationView_Previews: PreviewProvider {
     static var previews: some View {
-        CircleButtonAnimationView(animate: .constant(false))
+        CircleButtonAnimationView()
             .foregroundColor(.red)
-            .frame(width: 100, height: 100)
+            .frame(width: 70, height: 70)
     }
 }
