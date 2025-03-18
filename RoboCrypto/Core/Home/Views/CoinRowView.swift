@@ -2,7 +2,7 @@
 //  CoinRowView.swift
 //  RoboCrypto
 //
-//  Created by Robin O'Brien on 2025-03-17.
+//  Created by Robin O'Brien on 2025-03-17.   
 //
 
 import SwiftUI
