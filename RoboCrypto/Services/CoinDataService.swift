@@ -36,6 +36,7 @@ class CoinDataService {
                 self?.allCoins = returnedCoins
                 self?.coinSubscription?.cancel()
             })
+        
            
             
     }

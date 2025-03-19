@@ -48,6 +48,7 @@ import Foundation
              83620.17030648564,
              83263.6093863294,
              80589.75308067302
+                ...
           ]
        },
        "price_change_percentage_24h_in_currency":-1.6966497388782964
@@ -75,6 +76,7 @@ struct CoinModel: Identifiable, Codable {
     let sparklineIn7D: SparklineIn7D?
     let priceChangePercentage24HInCurrency: Double?
     let currentHoldings: Double?
+    
     
     enum CodingKeys: String, CodingKey {
         case id, symbol, name, image
@@ -137,6 +139,11 @@ struct CoinModel: Identifiable, Codable {
     }
     
     
+    
+
+    
+    
+    
     var currentHoldingsValue: Double {
         return (currentHoldings ?? 0) * currentPrice
     }
@@ -144,6 +151,9 @@ struct CoinModel: Identifiable, Codable {
     var rank: Int {
         return Int(marketCapRank ?? 0)
     }
+    
+  
+    
     
     
 
