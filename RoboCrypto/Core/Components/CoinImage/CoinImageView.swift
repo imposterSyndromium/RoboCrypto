@@ -9,14 +9,19 @@ import SwiftUI
 
 
 
-
-
+///  A view that displays a coin image
+///  - Parameter coin: The coin model to display the image for
+///  - Returns: A view that displays a coin image
 struct CoinImageView: View {
+    
     @StateObject var vm: CoinImageViewModel
     
+    ///  Initializes a new instance of the view with the specified coin model
+    /// - Parameter coin:  The coin model to display the image for
     init(coin: CoinModel) {
         _vm = StateObject(wrappedValue: CoinImageViewModel(coin: coin))
     }
+    
     
     var body: some View {
         ZStack {

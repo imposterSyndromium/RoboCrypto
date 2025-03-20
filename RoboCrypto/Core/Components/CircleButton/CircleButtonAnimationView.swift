@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+
+///  CircleButtonAnimationView is a view that animates a stroke effect coming from a circle.
+///  The CircleButtonAnimationView is used to draw a user's eyes to a change of state in a button.
 struct CircleButtonAnimationView: View {
 
      @State private var animationAmount: CGFloat = 1

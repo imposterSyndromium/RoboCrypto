@@ -152,11 +152,17 @@ struct CoinModel: Identifiable, Codable {
         return Int(marketCapRank ?? 0)
     }
     
-  
     
-    
-    
+}
 
+
+// MARK: - SparklineIn7D
+struct SparklineIn7D: Codable {
+    let price: [Double]?
+}
+
+
+extension CoinModel {
     static let sample = CoinModel(
        id: "bitcoin",
        symbol: "btc",
@@ -356,11 +362,4 @@ struct CoinModel: Identifiable, Codable {
        ]),
        priceChangePercentage24HInCurrency: 3952.64,
        currentHoldings: 1.5)
-    
-}
-
-
-// MARK: - SparklineIn7D
-struct SparklineIn7D: Codable {
-    let price: [Double]?
 }

@@ -13,7 +13,7 @@ import Combine
 
 class NetworkingManager {
     
-    // enum with errors that can take parameters and return a string
+    
     
     
     ///  This enum is used to represent errors that can occur during networking
