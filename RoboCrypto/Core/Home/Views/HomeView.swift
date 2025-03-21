@@ -21,8 +21,12 @@ struct HomeView: View {
             // Content Layer
             VStack {
                 header
+                
+                HomeStatView(showPortfolio: $showPortfolio)
+                
                 SearchBarView(searchText: $vm.searchText)
                     .padding()
+                
                 columnTitles
                 
                 if !showPortfolio {
@@ -40,7 +44,7 @@ struct HomeView: View {
 }
 
 #Preview {
-    var vm = HomeViewModel()
+    let vm = HomeViewModel()
     HomeView()
         .environmentObject(vm)
 }

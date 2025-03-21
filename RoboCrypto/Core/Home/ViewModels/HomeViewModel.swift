@@ -10,6 +10,12 @@ import Combine
 
 
 class HomeViewModel: ObservableObject {
+    @Published var statistics: [StatisticModel] = [
+        StatisticModel(title: "Title", value: "100,000", percentageChange: 2.5),
+        StatisticModel(title: "Title", value: "100,000"),
+        StatisticModel(title: "Title", value: "100,000"),
+        StatisticModel(title: "Title", value: "100,000", percentageChange: -0.6)
+    ]
     
     @Published var searchText: String = "" //<-- connected to search bar
     @Published var allCoins: [CoinModel] = []
@@ -25,12 +31,13 @@ class HomeViewModel: ObservableObject {
     
     
     func addSubscribers() {
-        
 
         /// Search Bar Text  and allCoin Subscriber
         $searchText
             // combine the searchText with the allCoins array to filter the results
             .combineLatest(dataService.$allCoins)
+            // debounce the search text to avoid unnecessary API calls - like when the user is typing - its a wait delay
+            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
             // filter the coins based on the search text
             .map(filterCoins)
         //            .map { text, startingCoins -> [CoinModel] in

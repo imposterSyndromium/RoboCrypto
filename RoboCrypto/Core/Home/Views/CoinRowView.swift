@@ -82,7 +82,7 @@ extension CoinRowView {
                     .foregroundColor(Color.theme.secondaryText)
                 
             }
-            .padding(.leading, 5)
+            .padding(.leading, 10)
         }
     }
     
@@ -104,6 +104,7 @@ extension CoinRowView {
             Text(coin.currentPrice.asCurrencyWith6Decimals())
                 .foregroundColor(Color.theme.accent)
                 .font(.headline)
+            
             Text(coin.priceChangePercentage24H?.asPercentString() ?? "0%")
                 .foregroundStyle(
                     (coin.priceChangePercentage24H ?? 0) >= 0 ?
