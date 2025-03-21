@@ -72,10 +72,17 @@ extension CoinRowView {
             CoinImageView(coin: coin)
                 .frame(width: 30, height: 30)
                 
-            Text(coin.symbol.uppercased())
-                .font(.headline)
-                .padding(.leading, 5)
-                .foregroundColor(Color.theme.accent)
+            VStack(alignment: .leading) {
+                
+                Text(coin.symbol.uppercased())
+                    .font(.headline)
+                    .foregroundColor(Color.theme.accent)
+                
+                Text(coin.name)
+                    .foregroundColor(Color.theme.secondaryText)
+                
+            }
+            .padding(.leading, 5)
         }
     }
     
