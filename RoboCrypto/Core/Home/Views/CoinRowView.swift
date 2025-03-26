@@ -83,6 +83,8 @@ extension CoinRowView {
                 
             }
             .padding(.leading, 10)
+            .frame(maxWidth: 150, alignment: .leading)
+            
         }
     }
     

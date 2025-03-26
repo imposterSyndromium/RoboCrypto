@@ -52,6 +52,7 @@ struct HomeView: View {
 
 
 extension HomeView {
+    
     private var header: some View {
         HStack {
             CircleButtonView(iconName: showPortfolio ? "plus" : "info")
@@ -60,7 +61,7 @@ extension HomeView {
             Spacer()
             
             Text(showPortfolio ? "Portfolio" : "Live Prices")
-                .font(.headline)
+                .font(.title2)
                 .fontWeight(.heavy)
                 .foregroundColor(Color.theme.accent)
                 .contentTransition(.numericText())

@@ -16,10 +16,10 @@ struct HomeStatView: View {
         HStack {
             ForEach(vm.statistics) { stat in
                 StatisticView(stat: stat)
-                    .frame(width: UIScreen.main.bounds.width / 3)
+                    .frame(width: UIScreen.main.bounds.width / 3.15)
             }
         }
-        .frame(width: UIScreen.main.bounds.width, alignment: showPortfolio ? .trailing : .leading)
+        .frame(width: UIScreen.main.bounds.width, alignment: showPortfolio ? .trailing : .leading)        
     }
     
 }

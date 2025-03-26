@@ -34,6 +34,6 @@ struct CircleButtonAnimationView_Previews: PreviewProvider {
     static var previews: some View {
         CircleButtonAnimationView()
             .foregroundColor(.red)
-            .frame(width: 70, height: 70)
+            //.frame(width: 70, height: 70)
     }
 }

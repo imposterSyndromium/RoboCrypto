@@ -59,20 +59,19 @@ class NetworkingManager {
             throw URLError(.badServerResponse)
         }
         
-        return output.data
-        
-        
         /// Print the raw data as a string
         //                if let jsonString = String(data: output.data, encoding: .utf8) {
         //                    print("JSON Data: \(jsonString)")
         //                }
         //
         /// Alternatively, for prettier formatting:
-        //                if let jsonObject = try? JSONSerialization.jsonObject(with: output.data),
-        //                   let prettyData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted),
-        //                   let prettyString = String(data: prettyData, encoding: .utf8) {
-        //                    print("Pretty JSON:\n\(prettyString)")
-        //                }
+        if let jsonObject = try? JSONSerialization.jsonObject(with: output.data),
+           let prettyData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted),
+           let prettyString = String(data: prettyData, encoding: .utf8) {
+            print("Pretty JSON:\n\(prettyString)")
+        }
+        
+        return output.data
     }
     
     
