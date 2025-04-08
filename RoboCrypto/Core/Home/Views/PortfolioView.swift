@@ -24,7 +24,6 @@ struct PortfolioView: View {
                     
                     if selectedCoin != nil {
                         portfolioInputSection
-                        
                     }
                 }
             }
@@ -47,10 +46,15 @@ struct PortfolioView: View {
     }
 }
 
+
+
 #Preview {
     PortfolioView()
         .environmentObject(HomeViewModel())
 }
+
+
+
 
 
 extension PortfolioView {
