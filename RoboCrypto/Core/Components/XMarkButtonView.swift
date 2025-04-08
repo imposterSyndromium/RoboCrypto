@@ -8,8 +8,22 @@
 import SwiftUI
 
 struct XMarkButtonView: View {
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button {
+            dismiss()
+        } label: {
+            ZStack {
+                Color.theme.secondaryText.opacity(0.3)
+                    .frame(width: 40, height: 40)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                
+                Image(systemName: "xmark")
+                    .font(.headline)
+                    .foregroundColor(Color.theme.accent)
+            }
+        }
     }
 }
 

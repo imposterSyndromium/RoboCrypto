@@ -11,12 +11,17 @@ struct HomeView: View {
     @EnvironmentObject private var vm: HomeViewModel
     
     @State private var showPortfolio: Bool = false
+    @State private var showAddToPortfolioSheetView: Bool = false
     
     var body: some View {
         ZStack {
             // Background Layer
             Color.theme.background
                 .ignoresSafeArea()
+                .sheet(isPresented: $showAddToPortfolioSheetView) {
+                    PortfolioView()
+                        .environmentObject(vm)
+                }
             
             // Content Layer
             VStack {
@@ -25,7 +30,7 @@ struct HomeView: View {
                 HomeStatView(showPortfolio: $showPortfolio)
                 
                 SearchBarView(searchText: $vm.searchText)
-                    .padding()
+                    
                 
                 columnTitles
                 
@@ -57,6 +62,10 @@ extension HomeView {
         HStack {
             CircleButtonView(iconName: showPortfolio ? "plus" : "info")
                 .background(showPortfolio ? CircleButtonAnimationView() : nil)
+                .onTapGesture {
+                    showAddToPortfolioSheetView.toggle()
+                }
+            
             
             Spacer()
             

@@ -9,7 +9,15 @@ import SwiftUI
 
 @main
 struct RoboCryptoApp: App {
+    // create instance of HomeViewModel to inject into the environment
     @StateObject private var vm = HomeViewModel()
+    
+    // make nav bar title text color match accent color
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color.theme.accent)]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.theme.accent)]
+    }
+    
     
     var body: some Scene {
         WindowGroup {

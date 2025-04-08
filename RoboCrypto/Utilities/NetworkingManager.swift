@@ -64,12 +64,12 @@ class NetworkingManager {
         //                    print("JSON Data: \(jsonString)")
         //                }
         //
-        /// Alternatively, for prettier formatting:
-        if let jsonObject = try? JSONSerialization.jsonObject(with: output.data),
-           let prettyData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted),
-           let prettyString = String(data: prettyData, encoding: .utf8) {
-            print("Pretty JSON:\n\(prettyString)")
-        }
+        //        /// Alternatively, for prettier formatting:
+        //        if let jsonObject = try? JSONSerialization.jsonObject(with: output.data),
+        //           let prettyData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted),
+        //           let prettyString = String(data: prettyData, encoding: .utf8) {
+        //            print("Pretty JSON:\n\(prettyString)")
+        //        }
         
         return output.data
     }
