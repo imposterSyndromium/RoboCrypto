@@ -29,8 +29,7 @@ struct HomeView: View {
                 
                 HomeStatView(showPortfolio: $showPortfolio)
                 
-                SearchBarView(searchText: $vm.searchText)
-                    
+                SearchBarView(searchText: $vm.searchText)                    
                 
                 columnTitles
                 
