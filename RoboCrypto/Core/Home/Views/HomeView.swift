@@ -13,35 +13,47 @@ struct HomeView: View {
     @State private var showPortfolio: Bool = false
     @State private var showAddToPortfolioSheetView: Bool = false
     
+    @State private var selectedCoin: CoinModel? = nil
+    @State private var showDetailView: Bool = false
+    
+    
     var body: some View {
-        ZStack {
-            // Background Layer
-            Color.theme.background
-                .ignoresSafeArea()
-                .sheet(isPresented: $showAddToPortfolioSheetView) {
-                    PortfolioView()
-                        .environmentObject(vm)
-                }
+        NavigationStack {
             
-            // Content Layer
-            VStack {
-                header
+            ZStack {
+                // Background Layer
+                Color.theme.background
+                    .ignoresSafeArea()
+                    .sheet(isPresented: $showAddToPortfolioSheetView) {
+                        PortfolioView()
+                            .environmentObject(vm)
+                    }
                 
-                HomeStatView(showPortfolio: $showPortfolio)
-                
-                SearchBarView(searchText: $vm.searchText)                    
-                
-                columnTitles
-                
-                if !showPortfolio {
-                    allCoinsList
-                        .transition(.move(edge: .leading))
-                } else {
-                    portfolioCoinsList
-                        .transition(.move(edge: .trailing))
+                // Content Layer
+                VStack {
+                    header
+                    
+                    HomeStatView(showPortfolio: $showPortfolio)
+                    
+                    SearchBarView(searchText: $vm.searchText)                    
+                    
+                    columnTitles
+                    
+                    if !showPortfolio {
+                        allCoinsList
+                            .transition(.move(edge: .leading))
+                    } else {
+                        portfolioCoinsList
+                            .transition(.move(edge: .trailing))
+                    }
+                    
+                    Spacer(minLength: 0)
                 }
-                
-                Spacer(minLength: 0)
+            }
+            .navigationDestination(isPresented: $showDetailView) {
+                if let selectedCoin {
+                    DetailView(coin: selectedCoin)
+                }
             }
         }
     }
@@ -65,7 +77,6 @@ extension HomeView {
                     showAddToPortfolioSheetView.toggle()
                 }
             
-            
             Spacer()
             
             Text(showPortfolio ? "Portfolio" : "Live Prices")
@@ -79,11 +90,10 @@ extension HomeView {
             CircleButtonView(iconName: "chevron.right")
                 .rotationEffect(Angle(degrees: showPortfolio ? 180 : 0))
                 .onTapGesture {
-                        withAnimation(.easeOut(duration: 0.3)) {
-                            showPortfolio.toggle()
-                        }
+                    withAnimation(.easeOut(duration: 0.3)) {
+                        showPortfolio.toggle()
+                    }
                 }
-                
         }
         .padding(.horizontal)
     }
@@ -92,21 +102,38 @@ extension HomeView {
     private var allCoinsList: some View {
         List {
             ForEach(vm.allCoins) { coin in
+                
                 CoinRowView(coin: coin, showHoldingsColumn: false)
                     .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                    .onTapGesture {
+                        showCoinDetailView(coin: coin)
+                    }
+                
+                
             }
         }
         .listStyle(PlainListStyle())
     }
     
+    
     private var portfolioCoinsList: some View {
         List {
             ForEach(vm.portfolioCoins) { coin in
+                
                 CoinRowView(coin: coin, showHoldingsColumn: true)
                     .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                    .onTapGesture {
+                        showCoinDetailView(coin: coin)
+                    }
             }
         }
         .listStyle(PlainListStyle())
+    }
+    
+    
+    private func showCoinDetailView(coin: CoinModel) {
+        selectedCoin = coin
+        showDetailView.toggle()
     }
     
     
@@ -115,7 +142,9 @@ extension HomeView {
             HStack(spacing: 4) {
                 Text("Coin")
                 Image(systemName: "chevron.down")
+                    // set visibility
                     .opacity((vm.sortOption == .rank || vm.sortOption == .rankReversed) ? 1 : 0)
+                    // set rotation of chevron
                     .rotationEffect(Angle(degrees: vm.sortOption == .rank ? 0 : 180))
             }
             .onTapGesture {
@@ -123,7 +152,7 @@ extension HomeView {
                     vm.sortOption = vm.sortOption == .rank ? .rankReversed : .rank
                 }
             }
-                
+            
             Spacer()
             
             if showPortfolio {
@@ -132,8 +161,8 @@ extension HomeView {
                     Image(systemName: "chevron.down")
                         .opacity((vm.sortOption == .holdings || vm.sortOption == .holdingsReversed) ? 1 : 0)
                         .rotationEffect(Angle(degrees: vm.sortOption == .holdings ? 0 : 180))
-
-
+                    
+                    
                 }
                 .onTapGesture {
                     withAnimation {
@@ -147,7 +176,7 @@ extension HomeView {
                 Image(systemName: "chevron.down")
                     .opacity((vm.sortOption == .price || vm.sortOption == .priceReversed) ? 1 : 0)
                     .rotationEffect(Angle(degrees: vm.sortOption == .price ? 0 : 180))
-                    
+                
             }
             .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
             .onTapGesture {
@@ -164,7 +193,7 @@ extension HomeView {
                 Image(systemName: "goforward")
             }
             .rotationEffect(Angle(degrees: vm.isLoading ? 360 : 0))
-
+            
         }
         .font(.caption)
         .foregroundColor(Color.theme.secondaryText)

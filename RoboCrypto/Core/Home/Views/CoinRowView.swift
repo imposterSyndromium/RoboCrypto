@@ -24,6 +24,8 @@ struct CoinRowView: View {
             rightColumn
         }
         .font(.subheadline)
+        // add an invisible background color to the row to make it tappable in the Spacer() area
+        .background(Color.theme.background.opacity(0.001))
     }
 }
 
@@ -34,12 +36,8 @@ struct CoinRowView: View {
     let coin = CoinModel.sample
     Group {
         CoinRowView(coin: coin, showHoldingsColumn: true)
-           
         
         CoinRowView(coin: coin, showHoldingsColumn: false)
-     
-            
-          
     }
 }
 

@@ -35,6 +35,8 @@ struct StatisticView: View {
     }
 }
 
+
+
 #Preview {
-    StatisticView(stat: StatisticModel.stat3)
+    StatisticView(stat: StatisticModel.stat1)
 }

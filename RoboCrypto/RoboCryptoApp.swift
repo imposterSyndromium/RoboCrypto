@@ -21,10 +21,8 @@ struct RoboCryptoApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
-                HomeView()
-            }
-            .environmentObject(vm)
+            HomeView()
+                .environmentObject(vm)
         }
     }
 }
