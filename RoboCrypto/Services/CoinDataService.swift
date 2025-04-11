@@ -58,7 +58,7 @@ class CoinDataService {
     /// - Note: The API is paginated, and this function fetches the first page of 250 coins.
     /// - The data is fetched in CAD currency, ordered by market capitalization in descending order.
     /// - The API also includes sparkline data and 24-hour price change percentages.
-    private func getCoins() {
+    func getCoins() {
         // The URL for the CoinGecko API endpoint to fetch cryptocurrency data.
         let webAPI = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=cad&order=market_cap_dsc&per_page=250&page=1&sparkline=true&price_change_percentage=24h"
         

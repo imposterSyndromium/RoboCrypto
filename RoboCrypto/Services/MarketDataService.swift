@@ -20,7 +20,7 @@ class MarketDataService {
     
     ///  Fetches all coins from the CoinGecko API
     ///  - Note: The API is paginated, so we're only fetching the first page of 250 coins
-    private func getData() {
+    func getData() {
         let webAPI = "https://api.coingecko.com/api/v3/global"
         
         guard let url = URL(string: webAPI) else {

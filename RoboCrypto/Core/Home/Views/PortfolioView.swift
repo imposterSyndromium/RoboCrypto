@@ -56,8 +56,9 @@ struct PortfolioView: View {
 
 
 
-
+// MARK: - PortfolioView Extensions
 extension PortfolioView {
+    
     private var coinLogoList: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(spacing: 10) {

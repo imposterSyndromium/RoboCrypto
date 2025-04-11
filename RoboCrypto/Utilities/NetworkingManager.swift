@@ -70,7 +70,7 @@ class NetworkingManager {
         //           let prettyString = String(data: prettyData, encoding: .utf8) {
         //            print("Pretty JSON:\n\(prettyString)")
         //        }
-        
+       
         return output.data
     }
     
