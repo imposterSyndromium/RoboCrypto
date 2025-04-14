@@ -53,6 +53,8 @@ struct HomeView: View {
             .navigationDestination(isPresented: $showDetailView) {
                 if let selectedCoin {
                     DetailView(coin: selectedCoin)
+                } else {
+                    ContentUnavailableView("There was an error getting data for a selectedCoin", image: "slash.circle")
                 }
             }
         }
