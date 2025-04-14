@@ -11,6 +11,8 @@ import SwiftUI
 struct DetailView: View {
     
     @StateObject private var vm: DetailViewModel
+    @State private var showFullDescription: Bool = false
+    
     private let columns: [GridItem] = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -35,11 +37,19 @@ struct DetailView: View {
                 VStack(spacing: 20) {
                     overviewTitle
                     Divider()
+                    descriptionSection
+                    
                     overViewGrid
                     
                     additionalTitle
                     Divider()
                     additionalGrid
+                    
+                    websiteSection
+                        .accentColor(.blue)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(.headline)
+                    
                 }
                 .padding()
             }
@@ -133,6 +143,48 @@ extension DetailView {
     }
     
     
+    private var descriptionSection: some View {
+        ZStack {
+            if let coinDescription = vm.coinDescription,
+               !coinDescription.isEmpty {
+                VStack(alignment: .leading) {
+                    Text(coinDescription)
+                        .lineLimit(showFullDescription ? nil : 3)
+                        .font(.callout)
+                        .foregroundStyle(Color.theme.secondaryText)
+                    
+                    Button {
+                        withAnimation(.easeInOut) {
+                            showFullDescription.toggle()
+                        }
+                    } label: {
+                        Text(showFullDescription ? "Read less..." : "Read more...")
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .padding(.vertical, 4)
+                        
+
+                    }
+
+                }
+            }
+        }
+    }
+    
+    
+    private var websiteSection: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            if let website = vm.websiteURL,
+               let url = URL(string: website) {
+                Link("Website", destination: url)
+            }
+            
+            if let redditString = vm.redditURL,
+                let url = URL(string: redditString) {
+                 Link("Reddit", destination: url)
+                }
+        }
+    }
 
 }
 
