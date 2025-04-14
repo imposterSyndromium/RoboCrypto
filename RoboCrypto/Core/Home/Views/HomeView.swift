@@ -15,6 +15,7 @@ struct HomeView: View {
     
     @State private var selectedCoin: CoinModel? = nil
     @State private var showDetailView: Bool = false
+    @State private var showSettingsView: Bool = false
     
     
     var body: some View {
@@ -49,6 +50,9 @@ struct HomeView: View {
                     
                     Spacer(minLength: 0)
                 }
+                .sheet(isPresented: $showSettingsView) {
+                    SettingsView()
+                }
             }
             .navigationDestination(isPresented: $showDetailView) {
                 if let selectedCoin {
@@ -76,7 +80,11 @@ extension HomeView {
             CircleButtonView(iconName: showPortfolio ? "plus" : "info")
                 .background(showPortfolio ? CircleButtonAnimationView() : nil)
                 .onTapGesture {
-                    showAddToPortfolioSheetView.toggle()
+                    if showPortfolio {
+                        showAddToPortfolioSheetView.toggle()
+                    } else {
+                        showSettingsView.toggle()
+                    }
                 }
             
             Spacer()
