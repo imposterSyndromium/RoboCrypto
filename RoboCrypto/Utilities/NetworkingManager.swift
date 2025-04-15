@@ -39,8 +39,8 @@ class NetworkingManager {
     /// - Note:  This function is used to download data from a URL. It uses the URLSession.shared.dataTaskPublisher(for:) method to create a publisher that emits the data from the URL. The publisher is then transformed using the tryMap operator to check the response from the server and throw an error if the response is not successful. The receive(on:) operator is used to receive the data on the main thread, which is important if you're using the data to update the UI. Finally, the eraseToAnyPublisher() operator is used to erase the specific type of the publisher and return an AnyPublisher that can be used in the rest of your code
     static func download(url: URL) -> AnyPublisher<Data, Error> {
        return URLSession.shared.dataTaskPublisher(for: url)
-            .subscribe(on: DispatchQueue.global(qos: .default))
             .tryMap({ try handleURLResponse(output: $0) })
+            .retry(3)
             //.receive(on: DispatchQueue.main)  //<-- moved the transfer to main thread from this method to each subscriber (after decoding)
             .eraseToAnyPublisher()
     }

@@ -33,11 +33,8 @@ struct HomeView: View {
                 // Content Layer
                 VStack {
                     header
-                    
                     HomeStatView(showPortfolio: $showPortfolio)
-                    
-                    SearchBarView(searchText: $vm.searchText)                    
-                    
+                    SearchBarView(searchText: $vm.searchText)
                     columnTitles
                     
                     if !showPortfolio {
@@ -58,7 +55,7 @@ struct HomeView: View {
                 if let selectedCoin {
                     DetailView(coin: selectedCoin)
                 } else {
-                    ContentUnavailableView("There was an error getting data for a selectedCoin", image: "slash.circle")
+                    ContentUnavailableView("There was an error getting data for a selectedCoin", systemImage: "slash.circle")
                 }
             }
         }
@@ -125,26 +122,34 @@ extension HomeView {
                     .onTapGesture {
                         showCoinDetailView(coin: coin)
                     }
-                
-                
+                    
             }
+            .listRowBackground(Color.theme.background)
         }
         .listStyle(PlainListStyle())
     }
     
     
     private var portfolioCoinsList: some View {
-        List {
-            ForEach(vm.portfolioCoins) { coin in
+        ZStack {
+            if vm.portfolioCoins.isEmpty && vm.searchText.isEmpty {
+                ContentUnavailableView("Your portfolio does not have any coins yet", systemImage: "circle.slash", description: Text("Press the + button to add coins to your portfolio."))
                 
-                CoinRowView(coin: coin, showHoldingsColumn: true)
-                    .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
-                    .onTapGesture {
-                        showCoinDetailView(coin: coin)
+            } else {
+                List {
+                    ForEach(vm.portfolioCoins) { coin in
+                        
+                        CoinRowView(coin: coin, showHoldingsColumn: true)
+                            .listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
+                            .onTapGesture {
+                                showCoinDetailView(coin: coin)
+                            }
                     }
+                    .listRowBackground(Color.theme.background)
+                }
+                .listStyle(PlainListStyle())
             }
         }
-        .listStyle(PlainListStyle())
     }
     
     
