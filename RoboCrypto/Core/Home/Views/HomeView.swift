@@ -89,7 +89,7 @@ extension HomeView {
             
             Spacer()
             
-            VStack {
+            VStack {                
                 Text("RoboCrypto")
                     .padding(.bottom, 3)
                     .foregroundColor(Color.theme.accent)
