@@ -158,7 +158,7 @@ extension DetailView {
                             showFullDescription.toggle()
                         }
                     } label: {
-                        Text(showFullDescription ? "Read less..." : "Read more...")
+                        Text(showFullDescription ? "less..." : "Read more...")
                             .font(.caption)
                             .fontWeight(.bold)
                             .padding(.vertical, 4)
