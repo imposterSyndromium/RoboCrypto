@@ -176,13 +176,13 @@ extension DetailView {
         VStack(alignment: .leading, spacing: 20) {
             if let website = vm.websiteURL,
                let url = URL(string: website) {
-                Link("Website", destination: url)
+                Link("\(url)", destination: url)
             }
             
             if let redditString = vm.redditURL,
-                let url = URL(string: redditString) {
-                 Link("Reddit", destination: url)
-                }
+               let url = URL(string: redditString) {
+                Link("\(url)", destination: url)
+            }
         }
     }
 

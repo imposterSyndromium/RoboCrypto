@@ -11,6 +11,7 @@ import SwiftUI
 struct RoboCryptoApp: App {
     // create instance of HomeViewModel to inject into the environment
     @StateObject private var vm = HomeViewModel()
+    @State private var showLaunchView: Bool = true
     
     // make nav bar title text color match accent color
     init() {
@@ -21,8 +22,21 @@ struct RoboCryptoApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeView()
-                .environmentObject(vm)
+            ZStack {
+                HomeView()
+                    .environmentObject(vm)
+                
+                
+                ZStack {
+                    if showLaunchView {
+                        LaunchView(showLaunchView: $showLaunchView)
+                            .transition(.move(edge: .leading))
+                    }
+                }
+                .zIndex(2)
+                    
+            }
+
         }
     }
 }
