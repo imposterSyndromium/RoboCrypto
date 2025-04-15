@@ -89,11 +89,18 @@ extension HomeView {
             
             Spacer()
             
-            Text(showPortfolio ? "Portfolio" : "Live Prices")
-                .font(.title2)
-                .fontWeight(.heavy)
-                .foregroundColor(Color.theme.accent)
-                .contentTransition(.numericText())
+            VStack {                
+                Text("RoboCrypto")
+                    .padding(.bottom, 3)
+                    .foregroundColor(Color.theme.accent)
+                
+                
+                Text(showPortfolio ? "Your Portfolio" : "Live Prices")
+                    .font(.title2)
+                    .fontWeight(.heavy)
+                    .foregroundColor(Color.theme.accent)
+                    .contentTransition(.numericText())
+            }
             
             Spacer()
             
