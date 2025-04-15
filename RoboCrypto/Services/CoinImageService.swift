@@ -109,6 +109,7 @@ class CoinImageService {
                 // Attempts to convert the downloaded data into a UIImage.
                 return UIImage(data: data)
             })
+            .receive(on: DispatchQueue.main)
             // Handles the completion and the value of the subscription.
             .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] returnedImage in
                 // Ensures self is not retained strongly and processes the returned image.

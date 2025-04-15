@@ -41,7 +41,7 @@ class NetworkingManager {
        return URLSession.shared.dataTaskPublisher(for: url)
             .subscribe(on: DispatchQueue.global(qos: .default))
             .tryMap({ try handleURLResponse(output: $0) })
-            .receive(on: DispatchQueue.main)
+            //.receive(on: DispatchQueue.main)  //<-- moved the transfer to main thread from this method to each subscriber (after decoding)
             .eraseToAnyPublisher()
     }
     

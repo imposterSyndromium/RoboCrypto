@@ -31,6 +31,7 @@ class MarketDataService {
         marketDataSubscription = NetworkingManager.download(url: url)
             // decode the JSON data into CoinModel
             .decode(type: GlobalData.self, decoder: JSONDecoder())
+            .receive(on: DispatchQueue.main)
             // sink is used to handle the completion and the value of the subscription
             .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] returnedGlobalData in
                 self?.marketData = returnedGlobalData.data
