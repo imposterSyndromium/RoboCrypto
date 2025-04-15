@@ -17,7 +17,7 @@ struct SettingsView: View {
     let personalURL = URL(string: "https://impostersyndromium.github.io")!
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 // background
                 Color.theme.background
@@ -40,8 +40,9 @@ struct SettingsView: View {
             .listStyle(GroupedListStyle())
             .navigationTitle("Settings")
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .topBarLeading) {
                     XMarkButtonView()
+                        .padding(.top, 10)
                 }
             }
         }
