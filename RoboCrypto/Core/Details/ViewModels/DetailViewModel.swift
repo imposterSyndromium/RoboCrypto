@@ -89,7 +89,7 @@ class DetailViewModel: ObservableObject {
         let pricePercentChange2 = coinModel.priceChangePercentage24H
         let priceChangeStat = StatisticModel(title: "24h Price Change", value: priceChange, percentageChange: pricePercentChange2)
         
-        let marketCapChange = "$" + (coinModel.marketCapChange24H?.asCurrencyWith6Decimals() ?? "n/a")
+        let marketCapChange = (coinModel.marketCapChange24H?.asCurrencyWith6Decimals() ?? "n/a")
         let marketCapPercentChange2 = coinModel.marketCapChangePercentage24H
         let marketCapChangeStat = StatisticModel(title: "24h Market Cap Change", value: marketCapChange, percentageChange: marketCapPercentChange2)
         

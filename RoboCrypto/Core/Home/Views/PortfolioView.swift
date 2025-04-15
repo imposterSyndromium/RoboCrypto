@@ -27,7 +27,7 @@ struct PortfolioView: View {
                     }
                 }
             }
-            .navigationTitle("Edit Portfolio").navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("Customize your Portfolio").navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     XMarkButtonView()
