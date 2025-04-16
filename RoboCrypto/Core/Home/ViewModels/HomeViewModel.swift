@@ -116,7 +116,7 @@ class HomeViewModel: ObservableObject {
     
     
     private func sortCoins(sort: SortOption, coins: inout [CoinModel]) {
-        // inout allows us to modify the coins array directly using sort method and return that array
+        // inout allows us to modify the coins array directly using sort method and return that array (same array in as out)
         switch sort {
             case .rank, .holdings:
                 coins.sort(by: { $0.rank < $1.rank })

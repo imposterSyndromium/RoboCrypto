@@ -109,8 +109,6 @@ extension CoinRowView {
                 .foregroundStyle(
                     (coin.priceChangePercentage24H ?? 0) >= 0 ?
                     Color.theme.greenColor : Color.theme.redColor)
-                
-                
         }
         .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
     }

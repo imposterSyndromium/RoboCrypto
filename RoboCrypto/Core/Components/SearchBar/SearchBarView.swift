@@ -26,6 +26,7 @@ struct SearchBarView: View {
                         .foregroundStyle(Color.theme.secondaryText)
                         .opacity(searchText.isEmpty ? 0.0 : 1.0)
                         .onTapGesture {
+                            // hide keyboard
                             UIApplication.shared.endEditing()
                             searchText = ""
                         }

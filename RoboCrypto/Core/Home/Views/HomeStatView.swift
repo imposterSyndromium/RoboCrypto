@@ -27,7 +27,7 @@ struct HomeStatView: View {
 
 
 #Preview {
-    var vm = HomeViewModel()
+    let vm = HomeViewModel()
     HomeStatView(showPortfolio: .constant(false))
         .environmentObject(vm)
 }

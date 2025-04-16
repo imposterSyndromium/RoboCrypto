@@ -11,6 +11,8 @@ import SwiftUI
 
 extension UIApplication {
     
+    
+    /// For hiding the keyboard from view
     func endEditing() {
         sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }

@@ -22,9 +22,7 @@ struct ChartView: View {
         minY = data.min() ?? 0
         
         let priceChange = (data.last ?? 0) - (data.first ?? 0)
-        print(priceChange)
         lineColor = (priceChange >= 0 ? Color.theme.greenColor : Color.theme.redColor)
-            //lineColor = Color.orange
         
         endingDate = Date(coinGeckoString: coin.lastUpdated ?? "")
         startingDate = endingDate.addingTimeInterval(-7 * 24 * 60 * 60) // 7 days ago
@@ -87,8 +85,9 @@ extension ChartView {
             .trim(from: 0, to: percentageDrawn) //<-- percentage drawn is using  animation in .onAppear to make the line draw animate itself
             .stroke(lineColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
             .shadow(color: lineColor.opacity(0.5), radius: 10, x: 0, y: 10)
-            .shadow(color: lineColor.opacity(0.2), radius: 10, x: 0, y: 20)
-            .shadow(color: lineColor.opacity(0.1), radius: 10, x: 0, y: 30)
+            .shadow(color: lineColor.opacity(0.4), radius: 10, x: 0, y: 20)
+            .shadow(color: lineColor.opacity(0.25), radius: 10, x: 0, y: 30)
+            .shadow(color: lineColor.opacity(0.1), radius: 10, x: 0, y: 40)
         }
     }
     
