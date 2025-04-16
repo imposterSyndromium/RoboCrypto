@@ -54,32 +54,32 @@
 
 ## Change Records
 
-### 2024-04-16
+### 2025-04-16
 - Updated project documentation
 - Verified project structure
 - Documented current progress
 
-### 2024-04-15
+### 2025-04-15
 - Implemented CoinImageService
 - Added UIApplication extension
 - Enhanced data services
 
-### 2024-04-14
+### 2025-04-14
 - Added CoinDetailModel
 - Implemented String extension
 - Updated color theming
 
-### 2024-04-11
+### 2025-04-11
 - Created Core feature modules
 - Implemented basic navigation
 - Added launch screen
 
-### 2024-03-26
+### 2025-03-26
 - Implemented MarketDataModel
 - Added Double extension
 - Created basic services
 
-### 2024-03-20
+### 2025-03-20
 - Initial CoinModel implementation
 - Basic project structure setup
 - Core Data integration
