@@ -12,7 +12,7 @@ struct SettingsView: View {
     
     let defaultURL = URL(string: "https://www.google.com")!
     let githubPagesURL = URL(string: "https://impostersyndromium.github.io")!
-    let coffeeURL = URL(string: "https://www.buymeacoffee.com/nicksarno")!
+//    let coffeeURL = URL(string: "https://www.buymeacoffee.com/nicksarno")!
     let coingeckoURL = URL(string: "https://www.coingecko.com")!
     let personalURL = URL(string: "https://impostersyndromium.github.io")!
     
@@ -25,7 +25,7 @@ struct SettingsView: View {
                 
                 // content
                 List {
-                    swiftfulThinkingSection
+                    applicationOutlineSection
                         .listRowBackground(Color.theme.background.opacity(0.5))
                     coinGeckoSection
                         .listRowBackground(Color.theme.background.opacity(0.5))
@@ -62,14 +62,14 @@ struct SettingsView: View {
 
 extension SettingsView {
     
-    private var swiftfulThinkingSection: some View {
+    private var applicationOutlineSection: some View {
         Section(header: Text("RoboCrypto")) {
             VStack(alignment: .leading) {
                 Image("logo")
                     .resizable()
                     .frame(width: 100, height: 100)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
-                Text("This app is written in Swift/SwiftUI.  It uses MVVM Architecture, Combine, and CoreData!")
+                Text("This application is a cryptocurrency market ticker tracker that allows you to view the latest prices and trends in the cryptocurrency market. It provides real-time data and a user-friendly interface for tracking your favourite coins.  This application also allows you to add coins to your portfolio calculator and track their performance over time.  This application  is not affiliated with any cryptocurrency exchange or platform and is intended for informational purposes only.  The data provided in this application is sourced from CoinGecko, a leading cryptocurrency data provider.  This application was created by Robin O'Brien (GitHub: imposterSyndromium) by following the SwiftfulThinking course created by Nick Sarno.  This application uses a public API from CoinGecko to provide real-time data on cryptocurrency prices, market capitalization, and other relevant information.  The data provided in this application is for informational purposes only and should not be considered as financial advice.  The developer of this application is not responsible for any losses or damages that may occur as a result of using this application or the data provided herein.")
                     .font(.callout)
                     .fontWeight(.medium)
                     .foregroundColor(Color.theme.accent)
@@ -89,7 +89,7 @@ extension SettingsView {
                     .scaledToFit()
                     .frame(height: 100)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
-                Text("The cryptocurrency data that is used in this app comes from a free API from CoinGecko! Prices may be slightly delayed.")
+                Text("The data provided in this application is sourced from CoinGecko, a leading cryptocurrency data provider.  This application uses a public API from CoinGecko to provide real-time data on cryptocurrency prices, market capitalization, and other relevant information.  The data provided in this application is for informational purposes only and should not be considered as financial advice.  The developer of this application is not responsible for any losses or damages that may occur as a result of using this application or the data provided herein.")
                     .font(.callout)
                     .fontWeight(.medium)
                     .foregroundColor(Color.theme.accent)
@@ -106,7 +106,7 @@ extension SettingsView {
                     .resizable()
                     .frame(width: 100, height: 100)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
-                Text("This app uses SwiftUI and is written 100% in Swift. The project benefits from multi-threading, publishers/subscribers, and data persistance.")
+                Text("This app uses SwiftUI and is written 100% in Swift. The project benefits from multi-threading, publishers/subscribers, and data persistance. The application uses MVVM architecture and is designed to be modular and reusable.  The application is built using the latest version of SwiftUI and is compatible with iOS 16.0 and later.  The application is designed to be user-friendly and easy to navigate, with a clean and modern interface.  The application is open source and the code is available on GitHub.")
                     .font(.callout)
                     .fontWeight(.medium)
                     .foregroundColor(Color.theme.accent)
@@ -118,10 +118,10 @@ extension SettingsView {
     
     private var applicationSection: some View {
         Section(header: Text("Application")) {
-            Link("Terms of Service", destination: defaultURL)
-            Link("Privacy Policy", destination: defaultURL)
-            Link("Company Website", destination: defaultURL)
-            Link("Learn More", destination: defaultURL)
+            Link("Terms of Service", destination: githubPagesURL)
+            Link("Privacy Policy", destination: githubPagesURL)
+            Link("Company Website", destination: githubPagesURL)
+            Link("Learn More", destination: githubPagesURL)
         }
     }
     
