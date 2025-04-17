@@ -15,6 +15,9 @@ struct SettingsView: View {
 //    let coffeeURL = URL(string: "https://www.buymeacoffee.com/nicksarno")!
     let coingeckoURL = URL(string: "https://www.coingecko.com")!
     let personalURL = URL(string: "https://impostersyndromium.github.io")!
+    let githubSourceRepoURL = URL(string: "https://github.com/imposterSyndromium/RoboCrypto")!
+    let swiftfulThinkingURL = URL(string: "https://www.swiftful-thinking.com")!
+    let hackingWithSwiftURL = URL(string: "https://www.hackingwithswift.com")!
     
     var body: some View {
         NavigationStack {
@@ -112,7 +115,7 @@ extension SettingsView {
                     .foregroundColor(Color.theme.accent)
             }
             .padding(.vertical)
-            Link("Visit Developer Website", destination: githubPagesURL)
+            Link("View Source Code on GitHub", destination: githubSourceRepoURL)
         }
     }
     
@@ -121,7 +124,8 @@ extension SettingsView {
             Link("Terms of Service", destination: githubPagesURL)
             Link("Privacy Policy", destination: githubPagesURL)
             Link("Company Website", destination: githubPagesURL)
-            Link("Learn More", destination: githubPagesURL)
+            Link("Learn Swift/SwiftUI with Swiftful Thinking", destination: swiftfulThinkingURL)
+            Link("Learn Swift/SwiftUI with Hacking With Swift", destination: hackingWithSwiftURL)
         }
     }
     
