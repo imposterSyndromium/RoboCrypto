@@ -36,6 +36,7 @@ class MarketDataService {
             .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] returnedGlobalData in
                 self?.marketData = returnedGlobalData.data
                 self?.marketDataSubscription?.cancel()
+                HapticManager.notification(type: .success)
             })
         
            

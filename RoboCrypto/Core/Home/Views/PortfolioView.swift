@@ -12,7 +12,14 @@ struct PortfolioView: View {
     @EnvironmentObject private var vm: HomeViewModel
     @State private var selectedCoin: CoinModel? = nil
     @State private var quantityText: String = ""
-    @State private var showCheckmark: Bool = false
+    @State private var showCheckmark: Bool = false {
+        // make a haptic feedback when checkmark appears
+        didSet {
+            if showCheckmark == true {
+                HapticManager.notification(type: .success)
+            }
+        }
+    }
     
     var body: some View {
         NavigationStack {
@@ -134,7 +141,7 @@ extension PortfolioView {
     
     
     private var trailingNavBarButton: some View {
-        HStack {
+        ZStack {
             Image(systemName: "checkmark")
                 .opacity(showCheckmark ? 1 : 0)
 
@@ -144,8 +151,6 @@ extension PortfolioView {
                 Text("Save".uppercased())
             }
             .opacity(selectedCoin != nil && selectedCoin?.currentHoldings != Double(quantityText) ? 1 : 0)
-
-            
         }
         .font(.headline)
         .padding(.top, 6)
@@ -170,7 +175,7 @@ extension PortfolioView {
         UIApplication.shared.endEditing()
         
         // hide checkmark after delay
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             withAnimation(.easeOut) {
                 showCheckmark = false
             }

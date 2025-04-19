@@ -55,7 +55,7 @@ struct HomeView: View {
                 if let selectedCoin {
                     DetailView(coin: selectedCoin)
                 } else {
-                    ContentUnavailableView("There was an error getting data for a selectedCoin", systemImage: "slash.circle")
+                    ContentUnavailableView("There was an error getting data for the selected coin", systemImage: "slash.circle")
                 }
             }
         }
