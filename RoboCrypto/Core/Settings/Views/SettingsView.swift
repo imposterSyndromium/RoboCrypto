@@ -10,6 +10,12 @@ import SwiftUI
 
 struct SettingsView: View {
     
+    // section less/more controllers
+    @State private var showFullAppOutline: Bool = false
+    @State private var showFullCoinGecko: Bool = false
+    @State private var showFullDeveloper: Bool = false
+    @State private var showFullDisclaimer: Bool = false
+    
     let defaultURL = URL(string: "https://www.google.com")!
     let githubPagesURL = URL(string: "https://impostersyndromium.github.io")!
 //    let coffeeURL = URL(string: "https://www.buymeacoffee.com/nicksarno")!
@@ -28,20 +34,21 @@ struct SettingsView: View {
                 
                 // content
                 List {
-                    applicationOutlineSection
-                        .listRowBackground(Color.theme.background.opacity(0.5))
-                    coinGeckoSection
-                        .listRowBackground(Color.theme.background.opacity(0.5))
-                    developerSection
-                        .listRowBackground(Color.theme.background.opacity(0.5))
-                    applicationSection
-                        .listRowBackground(Color.theme.background.opacity(0.5))
+                    Group {
+                        applicationOutlineSection
+                        coinGeckoSection
+                        developerSection
+                        disclaimerSection
+                        linksSection
+                    }
+                    .listRowBackground(Color.theme.background.opacity(0.5))
+
                 }
             }
             .font(.headline)
             .accentColor(.blue)
             .listStyle(GroupedListStyle())
-            .navigationTitle("Settings")
+            .navigationTitle("Information")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     XMarkButtonView()
@@ -72,10 +79,33 @@ extension SettingsView {
                     .resizable()
                     .frame(width: 100, height: 100)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
-                Text("This application is a cryptocurrency market ticker tracker that allows you to view the latest prices and trends in the cryptocurrency market. It provides real-time data and a user-friendly interface for tracking your favourite coins.  This application also allows you to add coins to your portfolio calculator and track their performance over time.  This application  is not affiliated with any cryptocurrency exchange or platform and is intended for informational purposes only.  The data provided in this application is sourced from CoinGecko, a leading cryptocurrency data provider.  This application was created by Robin O'Brien (GitHub: imposterSyndromium) by following the SwiftfulThinking course created by Nick Sarno.  This application uses a public API from CoinGecko to provide real-time data on cryptocurrency prices, market capitalization, and other relevant information.  The data provided in this application is for informational purposes only and should not be considered as financial advice.  The developer of this application is not responsible for any losses or damages that may occur as a result of using this application or the data provided herein.")
+                Text("""
+                     This application was created by Robin O'Brien (GitHub: imposterSyndromium) by following the SwiftfulThinking course created by Nick Sarno.
+                      
+                     This application provides the following:
+                      
+                     - a cryptocurrency market ticker tracker that allows you to view the latest prices and trends in the cryptocurrency market. It provides real-time data and a user-friendly interface for tracking your favourite coins.    
+                      
+                     - allows you to add coins to your portfolio calculator and track their performance over time.      
+                      
+                     - data provided in this application is sourced from CoinGecko, a leading cryptocurrency data provider; uses a public API from CoinGecko to provide real-time data on cryptocurrency prices, market capitalization, and other relevant information. 
+                    """)
+                    .lineLimit(showFullAppOutline ? .none : 4)
                     .font(.callout)
                     .fontWeight(.medium)
-                    .foregroundColor(Color.theme.accent)
+                    .foregroundStyle(Color.theme.accent)
+                
+                Button {
+                    withAnimation(.easeInOut) {
+                        showFullAppOutline.toggle()
+                    }
+                } label: {
+                    Text(showFullAppOutline ? "less..." : "Read more...")
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .padding(.vertical, 4)
+                }
+
             }
             .padding(.vertical)
             
@@ -83,6 +113,8 @@ extension SettingsView {
 
         }
     }
+    
+
     
     private var coinGeckoSection: some View {
         Section(header: Text("CoinGecko")) {
@@ -92,15 +124,30 @@ extension SettingsView {
                     .scaledToFit()
                     .frame(height: 100)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .padding()
+                
                 Text("The data provided in this application is sourced from CoinGecko, a leading cryptocurrency data provider.  This application uses a public API from CoinGecko to provide real-time data on cryptocurrency prices, market capitalization, and other relevant information.  The data provided in this application is for informational purposes only and should not be considered as financial advice.  The developer of this application is not responsible for any losses or damages that may occur as a result of using this application or the data provided herein.")
+                    .lineLimit(showFullCoinGecko ? .none : 4)
                     .font(.callout)
                     .fontWeight(.medium)
-                    .foregroundColor(Color.theme.accent)
+                    .foregroundStyle(Color.theme.accent)
+                
+                Button {
+                    withAnimation(.easeInOut) {
+                        showFullCoinGecko.toggle()
+                    }
+                } label: {
+                    Text(showFullCoinGecko ? "less..." : "Read more...")
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .padding(.vertical, 4)
+                }
             }
             .padding(.vertical)
             Link("Visit CoinGecko 🦎", destination: coingeckoURL)
         }
     }
+    
     
     private var developerSection: some View {
         Section(header: Text("Developer")) {
@@ -109,18 +156,79 @@ extension SettingsView {
                     .resizable()
                     .frame(width: 100, height: 100)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
-                Text("This app uses SwiftUI and is written 100% in Swift. The project benefits from multi-threading, publishers/subscribers, and data persistance. The application uses MVVM architecture and is designed to be modular and reusable.  The application is built using the latest version of SwiftUI and is compatible with iOS 16.0 and later.  The application is designed to be user-friendly and easy to navigate, with a clean and modern interface.  The application is open source and the code is available on GitHub.")
+                
+                Text("""
+                     Application points:
+                     
+                     - Uses SwiftUI and is written 100% in Swift
+                     - Multi-threading
+                     - Publishers/subscribers
+                     - Data persistence using Core Data
+                     - MVVM architecture
+                     - Is modular and reusable
+                     - Works with iOS 16.0 and above
+                     - User friendly and easy to navigate
+                     - Clean and modern interface
+                     - Open source and available on GitHub
+                     
+                     """)
+                    .lineLimit(showFullDeveloper ? .none : 4)
                     .font(.callout)
                     .fontWeight(.medium)
-                    .foregroundColor(Color.theme.accent)
+                    .foregroundStyle(Color.theme.accent)
+                
+                Button {
+                    withAnimation(.easeInOut) {
+                        showFullDeveloper.toggle()
+                    }
+                } label: {
+                    Text(showFullDeveloper ? "less..." : "Read more...")
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .padding(.vertical, 4)
+                }
             }
             .padding(.vertical)
             Link("View Source Code on GitHub", destination: githubSourceRepoURL)
         }
     }
     
-    private var applicationSection: some View {
-        Section(header: Text("Application")) {
+    
+    private var disclaimerSection: some View {
+        Section("Disclaimer") {
+            VStack(alignment: .leading) {
+                Image(systemName: "shield.lefthalf.filled")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 100)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                
+                Text("This application  is not affiliated with any cryptocurrency exchange or platform and is intended for informational purposes only.  The data provided in this application is for informational purposes only and should not be considered as financial advice.  The developer of this application is not responsible for any losses or damages that may occur as a result of using this application or the data provided herein.")
+                    .padding()
+                    .lineLimit(showFullDisclaimer ? .none : 4)
+                    .font(.callout)
+                    .fontWeight(.medium)
+                    .foregroundStyle(Color.theme.accent)
+                
+                Button {
+                    withAnimation(.easeInOut) {
+                        showFullDisclaimer.toggle()
+                    }
+                } label: {
+                    Text(showFullDisclaimer ? "less..." : "Read more...")
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .padding(.vertical, 4)
+                }
+            }
+            .foregroundStyle(Color.theme.accent)
+            .padding(.vertical)
+        }
+    }
+    
+    
+    private var linksSection: some View {
+        Section(header: Text("Links")) {
             Link("Terms of Service", destination: githubPagesURL)
             Link("Privacy Policy", destination: githubPagesURL)
             Link("Company Website", destination: githubPagesURL)
