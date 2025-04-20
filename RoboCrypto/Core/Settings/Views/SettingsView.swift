@@ -40,6 +40,7 @@ struct SettingsView: View {
                         linksSection
                     }
                     .listRowBackground(Color.theme.background.opacity(0.5))
+
                 }
             }
             .font(.headline)
@@ -81,8 +82,6 @@ extension SettingsView {
                     .resizable()
                     .frame(width: 100, height: 100)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
-                    .padding(.vertical, 4)
-                
                 Text("""
                      This application was created by Robin O'Brien (GitHub: imposterSyndromium) by following the SwiftfulThinking course created by Nick Sarno.
                       
@@ -94,8 +93,9 @@ extension SettingsView {
                       
                      - data provided in this application is sourced from CoinGecko, a leading cryptocurrency data provider; uses a public API from CoinGecko to provide real-time data on cryptocurrency prices, market capitalization, and other relevant information. 
                     """)
-                    .lineLimit(showFullAppOutline ? nil : 4)
+                    .lineLimit(showFullAppOutline ? .none : 4)
                     .font(.callout)
+                    .fontWeight(.medium)
                     .foregroundStyle(Color.theme.accent)
                 
                 Button {
@@ -117,6 +117,7 @@ extension SettingsView {
         }
     }
     
+
     
     private var coinGeckoSection: some View {
         Section {
@@ -131,15 +132,16 @@ extension SettingsView {
                     .scaledToFit()
                     .frame(height: 100)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
-                    .padding(.vertical, 4)
+                    .padding()
                 
                 Text("The data provided in this application is sourced from CoinGecko, a leading cryptocurrency data provider.  This application uses a public API from CoinGecko to provide real-time data on cryptocurrency prices, market capitalization, and other relevant information.  The data provided in this application is for informational purposes only and should not be considered as financial advice.  The developer of this application is not responsible for any losses or damages that may occur as a result of using this application or the data provided herein.")
-                    .lineLimit(showFullCoinGecko ? nil : 4)
+                    .lineLimit(showFullCoinGecko ? .none : 4)
                     .font(.callout)
+                    .fontWeight(.medium)
                     .foregroundStyle(Color.theme.accent)
                 
                 Button {
-                    withAnimation {
+                    withAnimation(.easeInOut) {
                         showFullCoinGecko.toggle()
                     }
                 } label: {
@@ -167,16 +169,13 @@ extension SettingsView {
                     .resizable()
                     .frame(width: 100, height: 100)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
-                    .padding(.vertical, 4)
                 
                 Text("""
                      Application points:
                      
                      - Uses SwiftUI and is written 100% in Swift
-                     - Optimized for iPhone and iPad
                      - Multi-threading
-                     - Dependancy injection
-                     - Publishers/subscribers using Combine framework
+                     - Publishers/subscribers
                      - Data persistence using Core Data
                      - MVVM architecture
                      - Is modular and reusable
@@ -186,8 +185,9 @@ extension SettingsView {
                      - Open source and available on GitHub
                      
                      """)
-                    .lineLimit(showFullDeveloper ? nil : 4)
+                    .lineLimit(showFullDeveloper ? .none : 4)
                     .font(.callout)
+                    .fontWeight(.medium)
                     .foregroundStyle(Color.theme.accent)
                 
                 Button {
@@ -208,24 +208,19 @@ extension SettingsView {
     
     
     private var disclaimerSection: some View {
-        Section {
+        Section("Disclaimer") {
             VStack(alignment: .leading) {
-                Text("Disclaimer")
-                    .font(.title3).bold()
-                
-                Divider()
-                
                 Image(systemName: "shield.lefthalf.filled")
                     .resizable()
                     .scaledToFit()
-                    .foregroundStyle(Color.theme.accent)
-                    .frame(height: 75)
+                    .frame(height: 100)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
-                    .padding(.vertical, 4)
                 
                 Text("This application  is not affiliated with any cryptocurrency exchange or platform and is intended for informational purposes only.  The data provided in this application is for informational purposes only and should not be considered as financial advice.  The developer of this application is not responsible for any losses or damages that may occur as a result of using this application or the data provided herein.")
-                    .lineLimit(showFullDisclaimer ? nil : 4)
+                    .padding()
+                    .lineLimit(showFullDisclaimer ? .none : 4)
                     .font(.callout)
+                    .fontWeight(.medium)
                     .foregroundStyle(Color.theme.accent)
                 
                 Button {
@@ -239,6 +234,7 @@ extension SettingsView {
                         .padding(.vertical, 4)
                 }
             }
+            .foregroundStyle(Color.theme.accent)
             .padding(.vertical)
         }
     }
