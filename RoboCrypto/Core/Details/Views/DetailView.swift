@@ -44,7 +44,7 @@ struct DetailView: View {
                     additionalTitle
                     Divider()
                     additionalGrid
-                    
+                    Divider()
                     websiteSection
                         .accentColor(.blue)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -96,7 +96,6 @@ extension DetailView {
             .bold()
             .foregroundStyle(Color.theme.accent)
             .frame(maxWidth: .infinity, alignment: .leading)
-
     }
 
     

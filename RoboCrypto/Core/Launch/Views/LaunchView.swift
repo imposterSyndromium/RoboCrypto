@@ -8,45 +8,58 @@
 import SwiftUI
 
 struct LaunchView: View {
-    @State private var loadingText: [String] = "Loading crypto coins & portfolio...".map { String($0) }
     @State private var showLoadingText: Bool = false
-    private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
-    @State private var counter: Int = 0
     @State private var loops: Int = 0
     @Binding var showLaunchView: Bool
+    
+    let timer = Timer.publish(every: 0.3, on: .main, in: .common).autoconnect()
+    @State private var count: Int = 0
     
     var body: some View {
         
         ZStack {
             
-            Color.launch.background
-                .ignoresSafeArea()
-            
-            Image(.logoTransparent)
-                .resizable()
-                .frame(width:100, height:100)
-            
-            
+            // background
             ZStack {
-                if showLoadingText {
+                Color.launch.background
+                    .ignoresSafeArea()
+                
+                Image(.logoTransparent)
+                    .resizable()
+                    .frame(width:100, height:100)
+            }
+            
+            // content
+            if showLoadingText {
+                ZStack {
+                    
+                    // text
+                    Text("Loading crypto coins & portfolio...")
+                        .font(.headline)
+                        .fontWeight(.heavy)
+                        .offset(y: 70)
 
-                    HStack(spacing: 0) {
-                        ForEach(loadingText.indices) { index in
-                            Text(loadingText[index])
-                                .font(.headline)
-                                .fontWeight(.heavy)
-                                .foregroundColor(Color.launch.accent)
-                                .offset(y: counter == index ? -7 : 0)
-                        }
+                    // bouncing dots animation
+                    HStack {
+                        Circle()
+                            .offset(y: count == 1 ? -10 : 0)
+                        Circle()
+                            .offset(y: count == 2 ? -10 : 0)
+                        Circle()
+                            .offset(y: count == 3 ? -10 : 0)
                     }
-                    .transition(AnyTransition.scale.animation(
-                        .smooth(duration: 0.4, extraBounce: 0.4)
-                    ))
+                    .offset(y: 120)
+                    .frame(width: 70)
+                    
                     
                 }
+                .foregroundStyle(Color.launchAccent)
+                .transition(AnyTransition.scale.animation(
+                    .smooth(duration: 0.4, extraBounce: 0.5)
+                ))
+                
             }
-            .offset(y: 70)
         }
         .onAppear {
             showLoadingText.toggle()
@@ -59,23 +72,27 @@ struct LaunchView: View {
             }
         }
         .onReceive(timer) { _ in
-            withAnimation(.spring()) {
-                
-                let lastIndex = loadingText.count - 1
-                if counter == lastIndex {
-                   counter = 0
-                    loops += 1
-                    
-                    if loops >= 1 {
-                        showLaunchView = false
-                    }
-                } else {
-                    counter += 1
-                }
-                
+            withAnimation(.easeInOut(duration: 0.5)) {
+                calculateLoops()
             }
         }
+        
+
     }
+    
+    
+    func calculateLoops() {
+        if count == 3 {
+            count = 0
+            loops += 1
+            if loops >= 3 {
+                showLaunchView = false
+            }
+        } else {
+            count += 1
+        }
+    }
+    
 }
 
 #Preview {

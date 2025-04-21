@@ -13,7 +13,7 @@ struct RoboCryptoApp: App {
     @StateObject private var vm = HomeViewModel()
     @State private var showLaunchView: Bool = true
     
-    // make nav bar title text color match accent color
+    // make nav bar title text color match theme color
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color.theme.accent)]
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.theme.accent)]
@@ -25,8 +25,6 @@ struct RoboCryptoApp: App {
             ZStack {
                 HomeView()
                     .environmentObject(vm)
-                
-                
                 ZStack {
                     if showLaunchView {
                         LaunchView(showLaunchView: $showLaunchView)

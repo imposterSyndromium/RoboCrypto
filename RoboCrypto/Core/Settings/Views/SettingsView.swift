@@ -40,7 +40,6 @@ struct SettingsView: View {
                         linksSection
                     }
                     .listRowBackground(Color.theme.background.opacity(0.5))
-
                 }
             }
             .font(.headline)
@@ -95,7 +94,6 @@ extension SettingsView {
                     """)
                     .lineLimit(showFullAppOutline ? .none : 4)
                     .font(.callout)
-                    .fontWeight(.medium)
                     .foregroundStyle(Color.theme.accent)
                 
                 Button {
@@ -137,7 +135,6 @@ extension SettingsView {
                 Text("The data provided in this application is sourced from CoinGecko, a leading cryptocurrency data provider.  This application uses a public API from CoinGecko to provide real-time data on cryptocurrency prices, market capitalization, and other relevant information.  The data provided in this application is for informational purposes only and should not be considered as financial advice.  The developer of this application is not responsible for any losses or damages that may occur as a result of using this application or the data provided herein.")
                     .lineLimit(showFullCoinGecko ? .none : 4)
                     .font(.callout)
-                    .fontWeight(.medium)
                     .foregroundStyle(Color.theme.accent)
                 
                 Button {
@@ -187,7 +184,6 @@ extension SettingsView {
                      """)
                     .lineLimit(showFullDeveloper ? .none : 4)
                     .font(.callout)
-                    .fontWeight(.medium)
                     .foregroundStyle(Color.theme.accent)
                 
                 Button {
@@ -208,19 +204,21 @@ extension SettingsView {
     
     
     private var disclaimerSection: some View {
-        Section("Disclaimer") {
+        Section {
             VStack(alignment: .leading) {
+                Text("Disclaimer")
+                    .font(.title3).bold()
+                
                 Image(systemName: "shield.lefthalf.filled")
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 100)
+                    .frame(height: 75)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .padding(.vertical)
                 
                 Text("This application  is not affiliated with any cryptocurrency exchange or platform and is intended for informational purposes only.  The data provided in this application is for informational purposes only and should not be considered as financial advice.  The developer of this application is not responsible for any losses or damages that may occur as a result of using this application or the data provided herein.")
-                    .padding()
                     .lineLimit(showFullDisclaimer ? .none : 4)
                     .font(.callout)
-                    .fontWeight(.medium)
                     .foregroundStyle(Color.theme.accent)
                 
                 Button {
@@ -234,14 +232,13 @@ extension SettingsView {
                         .padding(.vertical, 4)
                 }
             }
-            .foregroundStyle(Color.theme.accent)
             .padding(.vertical)
         }
     }
     
     
     private var linksSection: some View {
-        Section(header: Text("Links")) {
+        Section("Links") {
             Link("Terms of Service", destination: githubPagesURL)
             Link("Privacy Policy", destination: githubPagesURL)
             Link("Company Website", destination: githubPagesURL)
