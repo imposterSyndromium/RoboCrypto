@@ -32,9 +32,9 @@ struct RoboCryptoApp: App {
                     }
                 }
                 .zIndex(2)
-                    
             }
-
         }
     }
+    
+    
 }

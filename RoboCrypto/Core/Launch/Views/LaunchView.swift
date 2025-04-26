@@ -8,16 +8,14 @@
 import SwiftUI
 
 struct LaunchView: View {
-    @State private var showLoadingText: Bool = false
-    
-    @State private var loops: Int = 0
     @Binding var showLaunchView: Bool
+    @State private var showLoadingText: Bool = false
+    @State private var loops: Int = 0
     
     let timer = Timer.publish(every: 0.3, on: .main, in: .common).autoconnect()
     @State private var count: Int = 0
     
     var body: some View {
-        
         ZStack {
             
             // background
@@ -39,7 +37,7 @@ struct LaunchView: View {
                         .font(.headline)
                         .fontWeight(.heavy)
                         .offset(y: 70)
-
+                    
                     // bouncing dots animation
                     HStack {
                         Circle()
@@ -56,7 +54,7 @@ struct LaunchView: View {
                 }
                 .foregroundStyle(Color.launchAccent)
                 .transition(AnyTransition.scale.animation(
-                    .smooth(duration: 0.4, extraBounce: 0.5)
+                    .smooth(duration: 0.4, extraBounce: 0.6)
                 ))
                 
             }
@@ -77,7 +75,7 @@ struct LaunchView: View {
             }
         }
         
-
+        
     }
     
     
