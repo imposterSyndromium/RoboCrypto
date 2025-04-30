@@ -13,7 +13,7 @@ import Combine
 
 class NetworkingManager {
     
-    
+    static let printJSONResultStringInDebugWindow: Bool = false
     
     
     ///  This enum is used to represent errors that can occur during networking
@@ -64,13 +64,16 @@ class NetworkingManager {
         //                    print("JSON Data: \(jsonString)")
         //                }
         //
-        //        /// Alternatively, for prettier formatting:
-        //        if let jsonObject = try? JSONSerialization.jsonObject(with: output.data),
-        //           let prettyData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted),
-        //           let prettyString = String(data: prettyData, encoding: .utf8) {
-        //            print("Pretty JSON:\n\(prettyString)")
-        //        }
-       
+        /// Alternatively, for prettier formatting:
+        if printJSONResultStringInDebugWindow {
+            if let jsonObject = try? JSONSerialization.jsonObject(with: output.data),
+               let prettyData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted),
+               let prettyString = String(data: prettyData, encoding: .utf8) {
+                print("Pretty JSON:\n\(prettyString)")
+            }
+        }
+
+        
         return output.data
     }
     

@@ -14,6 +14,9 @@ class DetailViewModel: ObservableObject {
     @Published var coinDescription: String? = nil
     @Published var websiteURL: String? = nil
     @Published var redditURL: String? = nil
+    
+    @Published var conversionRateService: ConversionRateService
+    @Published var conversionRate: Double?
 
     
     @Published var coin: CoinModel
@@ -24,7 +27,10 @@ class DetailViewModel: ObservableObject {
     init(coin: CoinModel) {
         self.coin = coin
         self.coinDetailService = CoinDetailDataService(coin: coin)
+        self.conversionRateService = ConversionRateService()
         self.addSubscribers()
+        
+        print("self.conversionRate is \(String(describing: conversionRate))")
     }
     
     private func addSubscribers() {
@@ -47,7 +53,21 @@ class DetailViewModel: ObservableObject {
             }
             .store(in: &cancellables)
         
+        conversionRateService.$conversionRate
+            .sink { [weak self] returnedConversionRate in
+                self?.conversionRate = returnedConversionRate
+                print("self.conversionRate is \(String(describing: self?.conversionRate))")
+            }
+            .store(in: &cancellables)
+        
     }
+    
+//    func getConversionRate() {
+//        if let conversionRate = conversionRateService.conversionRate {
+//            self.conversionRate = conversionRate
+//            print("selfrConversion rate is \(conversionRate)")
+//        }
+//    }
     
     
     

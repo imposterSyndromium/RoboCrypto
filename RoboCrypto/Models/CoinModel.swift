@@ -12,8 +12,9 @@ import Foundation
  URL:
  https://api.coingecko.com/api/v3/coins/markets?vs_currency=cad&order=market_cap_dsc&per_page=250&page=1&sparkline=true&price_change_percentage=24h
  
- returns:
+ 
  ** Use https://app.quicktype.io/ to generate the model from the JSON response **
+ returns:
  
  [
     {

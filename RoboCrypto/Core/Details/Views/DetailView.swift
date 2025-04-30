@@ -30,7 +30,7 @@ struct DetailView: View {
     var body: some View {
         ScrollView {
             VStack {
-                ChartView(coin: vm.coin)
+                ChartView(coin: vm.coin, conversionRate: vm.conversionRate ?? 1.0)
                     .padding(.vertical)
                     
                     

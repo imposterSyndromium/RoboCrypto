@@ -27,7 +27,7 @@ class CoinDetailDataService {
     
     func getCoinDetails() {
         // The URL for the CoinGecko API endpoint to fetch cryptocurrency data.
-        let webAPI = "https://api.coingecko.com/api/v3/coins/\(coin.id)?localization=false&tickers=false&market_data=false&community_data=false&developer_data=false&sparkline=false"
+        let webAPI = "https://api.coingecko.com/api/v3/coins/\(coin.id)?localization=true&tickers=false&market_data=false&community_data=false&developer_data=false&sparkline=false"
         
         // Ensure the URL string is valid and can be converted to a `URL` object.
         guard let url = URL(string: webAPI) else {

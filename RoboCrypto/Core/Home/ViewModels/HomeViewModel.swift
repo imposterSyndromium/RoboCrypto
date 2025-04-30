@@ -11,6 +11,7 @@ import Combine
 
 class HomeViewModel: ObservableObject {
     @Published var searchText: String = "" //<-- connected to search bar
+
     
     // Models
     @Published var statistics: [StatisticModel] = []
@@ -77,6 +78,8 @@ class HomeViewModel: ObservableObject {
             .store(in: &cancellables)
 
     }
+    
+
     
     
     func updatePortfolio(coin: CoinModel, amount: Double) {
