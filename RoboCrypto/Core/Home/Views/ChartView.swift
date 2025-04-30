@@ -16,21 +16,10 @@ struct ChartView: View {
     private let endingDate: Date
     @State private var percentageDrawn: CGFloat = 0
     
-//    init(coin: CoinModel) {
-//        data = coin.sparklineIn7D?.price ?? []
-//        maxY = data.max() ?? 0
-//        minY = data.min() ?? 0
-//
-//        let priceChange = (data.last ?? 0) - (data.first ?? 0)
-//        lineColor = (priceChange >= 0 ? Color.theme.greenColor : Color.theme.redColor)
-//
-//        endingDate = Date(coinGeckoString: coin.lastUpdated ?? "")
-//        startingDate = endingDate.addingTimeInterval(-7 * 24 * 60 * 60) // 7 days ago
-//    }
     
     init(coin: CoinModel, conversionRate: Double) {
         let usdPrices = coin.sparklineIn7D?.price ?? []
-        data = usdPrices.map { $0 * conversionRate } // Convert USD to CAD
+        data = usdPrices.map { $0 * conversionRate } // Convert to currency by multiplying by USD conversion rate
         maxY = data.max() ?? 0
         minY = data.min() ?? 0
     
